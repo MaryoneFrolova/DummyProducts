@@ -2,7 +2,7 @@ package ru.maryone.dummyproducts.data.storage.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ProductItemApi(
+data class ProductItemStorage(
     @SerializedName("id")
     val id: Int,
     @SerializedName("title")

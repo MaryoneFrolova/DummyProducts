@@ -28,36 +28,39 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this,MainViewModelFactory())[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this, MainViewModelFactory())[MainViewModel::class.java]
 
         initRecycler()
 
         initObserves()
     }
 
-    private fun initRecycler(){
+    private fun initRecycler() {
         binding.productsRecyclerView.adapter = productListAdapter
 
         binding.productsRecyclerView.layoutManager = LinearLayoutManager(
             this,
             LinearLayoutManager.VERTICAL,
-            false)
-        productListAdapter.onReachEndListener = {viewModel.getProducts()}
+            false
+        )
+        productListAdapter.onReachEndListener = { viewModel.getProducts() }
 
         val dividerItemDecoration = DividerItemDecoration(this, RecyclerView.VERTICAL)
-        dividerItemDecoration.setDrawable(AppCompatResources.getDrawable(
-            this,
-            R.drawable.drawable_divider
-        )!!)
+        dividerItemDecoration.setDrawable(
+            AppCompatResources.getDrawable(
+                this,
+                R.drawable.drawable_divider
+            )!!
+        )
         binding.productsRecyclerView.addItemDecoration(dividerItemDecoration)
     }
 
-    private fun initObserves(){
-        viewModel.getProductList().observe(this){newElements ->
+    private fun initObserves() {
+        viewModel.getProductList().observe(this) { newElements ->
             updateList(newElements)
         }
 
-        viewModel.getIsLoading().observe(this){isLoading ->
+        viewModel.getIsLoading().observe(this) { isLoading ->
             if (isLoading) {
                 binding.progressBarLoading.visibility = View.VISIBLE
             } else {

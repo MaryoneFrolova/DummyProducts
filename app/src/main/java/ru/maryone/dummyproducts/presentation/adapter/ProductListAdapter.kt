@@ -14,7 +14,13 @@ class ProductListAdapter(
     var onReachEndListener: (() -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(
+            ItemProductBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -26,9 +32,10 @@ class ProductListAdapter(
 
     override fun getItemCount(): Int = elements.size
 
-    class ViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemProductBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(element: ProductItem) {
-            with(binding){
+            with(binding) {
                 titleTextView.text = element.title
                 descriptionTextView.text = element.description
                 Glide

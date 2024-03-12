@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class ProductsResponse(
 
     @SerializedName("products")
-    private val products: List<ProductItemApi>
+    private val products: List<ProductItemStorage>
 ) {
-    fun getProducts(): List<ProductItemApi> {
+    fun getProducts(): List<ProductItemStorage> {
         return products
     }
 }
