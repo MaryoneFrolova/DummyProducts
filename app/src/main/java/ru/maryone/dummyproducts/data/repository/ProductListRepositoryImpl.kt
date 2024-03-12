@@ -5,7 +5,7 @@ import ru.maryone.dummyproducts.data.storage.ProductListStorage
 import ru.maryone.dummyproducts.domain.ProductListRepository
 import ru.maryone.dummyproducts.domain.model.ProductItem
 
-class ProductListRepositoryImpl(private val productListStorage: ProductListStorage) :
+class ProductListRepositoryImpl (private val productListStorage: ProductListStorage) :
     ProductListRepository {
     override fun getProductList(skip: Int, limit: Int): Single<List<ProductItem>> {
         return productListStorage.get(skip, limit)

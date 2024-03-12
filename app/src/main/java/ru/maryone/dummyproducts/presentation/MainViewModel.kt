@@ -11,7 +11,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.maryone.dummyproducts.domain.model.ProductItem
 import ru.maryone.dummyproducts.domain.usecase.GetProductListUseCase
 
-class MainViewModel(private val getProductListUseCase: GetProductListUseCase) : ViewModel() {
+class MainViewModel (
+    private val getProductListUseCase: GetProductListUseCase
+) : ViewModel() {
 
     private val products: MutableLiveData<List<ProductItem>> = MutableLiveData<List<ProductItem>>()
     private val isLoading = MutableLiveData(false)
