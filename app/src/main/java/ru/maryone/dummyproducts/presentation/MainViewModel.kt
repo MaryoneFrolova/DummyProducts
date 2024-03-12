@@ -35,7 +35,7 @@ class MainViewModel (private val getProductListUseCase: GetProductListUseCase): 
             return
         }
         Log.d("MainViewModel", "getProducts")
-        val disposable: Disposable = getProductListUseCase.getProductList(page)
+        val disposable: Disposable = getProductListUseCase.getProductList(page, ITEMS_ON_THE_PAGE)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { isLoading.postValue(true) }
@@ -46,7 +46,7 @@ class MainViewModel (private val getProductListUseCase: GetProductListUseCase): 
                     val loadedMovies: MutableList<ProductItem> = products.value?.toMutableList() ?: mutableListOf()
                     loadedMovies.addAll(productsResponse)
                     products.value = loadedMovies
-                    page += 20
+                    page += ITEMS_ON_THE_PAGE
                 },
                 { throwable -> Log.d("MainViewModel", throwable.toString()) })
         compositeDisposable.add(disposable)
@@ -55,5 +55,9 @@ class MainViewModel (private val getProductListUseCase: GetProductListUseCase): 
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
+    }
+
+    companion object {
+        const val ITEMS_ON_THE_PAGE = 20
     }
 }

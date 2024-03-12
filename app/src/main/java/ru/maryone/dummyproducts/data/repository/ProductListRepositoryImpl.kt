@@ -7,7 +7,7 @@ import ru.maryone.dummyproducts.domain.ProductListRepository
 import ru.maryone.dummyproducts.domain.model.ProductItem
 
 object ProductListRepositoryImpl: ProductListRepository {
-    override fun getProductList(skip: Int): Single<List<ProductItem>> {
-        return ApiService.create().loadProducts(skip).map { ProductItemMapping.from(it) }
+    override fun getProductList(skip: Int, limit: Int): Single<List<ProductItem>> {
+        return ApiService.create().loadProducts(skip, limit).map { ProductItemMapping.from(it) }
     }
 }

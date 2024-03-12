@@ -12,8 +12,8 @@ import ru.maryone.dummyproducts.data.storage.model.ProductsResponse
 
 interface ApiService {
 
-    @GET("/products?limit=20")
-    fun loadProducts(@Query("skip") skip: Int): Single<ProductsResponse>
+    @GET("/products")
+    fun loadProducts(@Query("skip") skip: Int, @Query("limit") limit: Int = 20): Single<ProductsResponse>
 
     companion object Factory {
 
